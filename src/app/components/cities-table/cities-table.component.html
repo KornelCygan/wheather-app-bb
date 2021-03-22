@@ -1,1 +1,1 @@
-<div>Table works</div>
+<app-city-card *ngFor="let city of (citiesData$ | async)?.list" [city]=city></app-city-card>

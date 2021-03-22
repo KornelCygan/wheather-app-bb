@@ -1,10 +1,10 @@
 export interface ICity {
     name: string;
-    wind: {
-      speed: number;
-    };
     main: {
       temp: number;
+    };
+    wind: {
+      speed: number;
     };
     coord: {
       lat: number;

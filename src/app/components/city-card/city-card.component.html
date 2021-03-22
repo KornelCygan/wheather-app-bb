@@ -1,0 +1,9 @@
+<mat-card routerLink="/city/{{city.name}}" color="primary">
+  <mat-card-header>
+    <mat-card-title>{{city.name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Temperature: {{roundTemperature(city.main.temp)}} °C</p>
+    <p>Wind strength: {{city.wind.speed}} m/s</p>
+  </mat-card-content>
+</mat-card>

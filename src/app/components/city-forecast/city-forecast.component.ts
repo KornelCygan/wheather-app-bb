@@ -21,7 +21,6 @@ export class CityForecastComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCityForecast();
-    this.cityForecastData$.subscribe(x => console.log(x))
   }
 
   getCityForecast(): void {

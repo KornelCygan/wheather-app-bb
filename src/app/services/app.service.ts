@@ -24,7 +24,6 @@ export class AppService {
 
   getCityForecast(city: string): Observable<ICityForecast> {
     return this.http.get<ICity>(`${this.apiUrl}/weather?q=${city}&appid=${this.apiKey}`).pipe(
-      tap(x => console.log(this.citiesIds)),
       filter(city => !!city.coord),
       switchMap(data => {
         return this.http.get<ICityForecast>(`${this.apiUrl}/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=minutely,daily&units=metric&appid=${this.apiKey}`);

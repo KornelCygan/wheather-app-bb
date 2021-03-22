@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { mockCities } from 'src/app/mock/mock-data';
 import { ICities } from '../interfaces/cities.interface';
+import { ICityForecast } from '../interfaces/city-forecast.interface';
 import { AppService } from './app.service';
 
 describe('AppService', () => {
@@ -30,6 +31,26 @@ describe('AppService', () => {
 
     req.flush({
       data : mockCities
+    });
+
+    httpMock.verify();
+  });
+
+  it('should get data from getCityForecast method', () => {
+    service.getCityForecast('katowice').subscribe((data: ICityForecast) => {
+      expect(data.hourly[0].temp).toBe(13);
+    });
+
+    const req = httpMock.expectOne(`https://api.openweathermap.org/data/2.5//weather?q=katowice&appid=e26dd6051c70a86da6b5b53b8c6198df`);
+    expect(req.request.method).toBe('GET');
+
+    req.flush({
+      hourly : [
+        {
+          temp: 13,
+          wind_speed: 123,
+        }
+      ]
     });
 
     httpMock.verify();
